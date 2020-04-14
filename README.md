@@ -1,1 +1,1 @@
-# SPA-PSM-project
+# SportEventsPlanner
