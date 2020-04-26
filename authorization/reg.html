@@ -1,0 +1,96 @@
+<html>
+    <head>
+       
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+        <link rel ="stylesheet" type="text/css" href="style.css">
+      
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+       
+    </head>
+    <body>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+          </div>
+          <ul class="nav navbar-nav">
+            
+            <li><a href="home.html">Home</a></li>
+            <li><a href="reg.html">Sign Up</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+      </nav>
+        
+      <form id='signup' action="home.html" method="POST">
+        <div class="form-group" max-width:500px>
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="regisEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+          
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="regisPassword" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Confirm password</label>
+          <input type="password" class="form-control" id="regisPassword2" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Nickname</label>
+          <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Age</label>
+          <input type="int" class="form-control" id="age" placeholder="Age">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+        <p style="color: red;" class="error"></p>
+      </form>
+
+   
+       
+        <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAO7wjG_KgdfONU9xQOIIgZ2ig4kKd7jBQ",
+  authDomain: "sporteventsplanner-a1a88.firebaseapp.com",
+  databaseURL: "https://sporteventsplanner-a1a88.firebaseio.com",
+  projectId: "sporteventsplanner-a1a88",
+  storageBucket: "sporteventsplanner-a1a88.appspot.com",
+  messagingSenderId: "324303317328",
+  appId: "1:324303317328:web:d8505e459fddbe6aa82455",
+  measurementId: "G-W6G5F9R368"
+};
+  firebase.initializeApp(firebaseConfig);
+            const auth=firebase.auth();
+            const db=firebase.firestore();
+            const signupForm = document.querySelector('#signup');
+signupForm.addEventListener('submit',(e) =>{
+  e.preventDefault();
+  const email=signupForm['regisEmail'].value;
+  const password=signupForm['regisPassword'].value;
+  const password1=signupForm['regisPassword2'].value;
+  if (password!=password1){
+    alert('Passwords must be the same')
+  }
+  else{
+  auth.createUserWithEmailAndPassword(email,password).then(cred =>{
+    return db.collection('users').doc(cred.user.uid).set({
+      nickname: signupForm['nickname'].value,
+      age: signupForm['age'].value
+    }),
+    window.location = "/home.html";
+  }).catch(err=>{
+    signupForm.querySelector('.error').innerHTML=err.message;
+  });}
+})
+            
+        </script>
+        
+    </body>
+</html>
