@@ -1,6 +1,7 @@
 <template>
   <div class="overflow-hidden">
     <Navbar />
+    <h1>home</h1>
     <Footer />
   </div>
 </template>
