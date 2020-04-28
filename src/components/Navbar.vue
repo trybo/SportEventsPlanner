@@ -23,13 +23,25 @@
         <li class="nav-item active">
           <a class="nav-link px-3" href="#">Events</a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link px-3" href="#">Create event</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link px-3" href="#">Your events</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Sing in</a>
+          <a class="nav-link px-3" href="#">Sign in</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Sing up</a>
+          <a class="nav-link px-3" href="#">Sign up</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link px-3" href="#">Profile</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link px-3" href="#">Logout</a>
         </li>
       </ul>
     </div>
