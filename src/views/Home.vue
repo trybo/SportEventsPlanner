@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden">
+  <div id="home-container" class="overflow-hidden">
     <Navbar />
     <HomeCards />
     <Footer />
@@ -21,4 +21,8 @@ export default {
 </script>
 
 <style>
+#home-container {
+  position: relative;
+  min-height: 100vh;
+}
 </style>

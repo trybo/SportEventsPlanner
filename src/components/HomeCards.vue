@@ -1,6 +1,6 @@
 <template>
-  <div class="card-deck text-center mx-5 my-5">
-    <div class="card bg-transparent text-white px-2 py-2">
+  <div class="card-deck text-center mx-4 my-5">
+    <div class="card bg-transparent text-white p-2">
       <img class="card-img-top" src="../assets/logo.png" alt="Card image cap" />
       <div class="card-body">
         <h3 class="card-title">Card title</h3>
@@ -9,7 +9,7 @@
         >This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       </div>
     </div>
-    <div class="card bg-transparent text-white px-2 py-2">
+    <div class="card bg-transparent text-white p-2">
       <img class="card-img-top" src="../assets/logo.png" alt="Card image cap" />
       <div class="card-body">
         <h3 class="card-title">Card title</h3>
@@ -18,7 +18,7 @@
         >This card has supporting text below as a natural lead-in to additional content.</p>
       </div>
     </div>
-    <div class="card bg-transparent text-white px-2 py-2">
+    <div class="card bg-transparent text-white p-2">
       <img class="card-img-top" src="../assets/logo.png" alt="Card image cap" />
       <div class="card-body">
         <h3 class="card-title">Card title</h3>
