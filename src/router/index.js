@@ -5,6 +5,8 @@ import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Register from '../components/Register';
 import Logout from '../components/Logout';
+import Events from '../views/Events.vue'
+
 
 Vue.use(VueRouter)
 
@@ -41,7 +43,12 @@ Vue.use(VueRouter)
         path: '/logout',
         name:'Logout',
         component:Logout
-        }
+        },
+        {
+          path: '/events',
+          name:'Events',
+          component:Login
+          }
   
 ]
 
