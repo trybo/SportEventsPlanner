@@ -1,22 +1,26 @@
 <template>
-  <div class="overflow-hidden">
+  <div id="home-container" class="overflow-hidden">
     <Navbar />
-    <h1>home</h1>
+    <HomeCards />
     <Footer />
   </div>
 </template>
-
 <script>
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-
+import Navbar from "@/components/Navbar";
+import HomeCards from "@/components/HomeCards";
+import Footer from "@/components/Footer";
 export default {
-    components: {
-        Navbar,
-        Footer
-    }
-}
+  components: {
+    Navbar,
+    HomeCards,
+    Footer
+  }
+};
 </script>
 
 <style>
+#home-container {
+  position: relative;
+  min-height: 100vh;
+}
 </style>

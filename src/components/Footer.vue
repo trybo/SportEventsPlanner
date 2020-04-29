@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div id="footer" class="text-center text-muted pb-4 pt-4">
+    <div id="footer" class="text-center p-4">
       <span id="footer-text">© Copyright 2020 – All Rights Reserved – SportEventsPlanner</span>
     </div>
   </footer>
@@ -13,10 +13,9 @@ export default {};
 <style>
 #footer {
   background-color: #003c8f;
-  height: 5%;
-}
-#footer-text {
-  font-size: 16px;
-  color: #ffffff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 </style>
