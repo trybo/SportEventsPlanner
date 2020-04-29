@@ -1,6 +1,7 @@
 <template>
   <div id="home-container" class="overflow-hidden">
     <Navbar />
+    <h1 class="text-center my-4">All events</h1>
     <EventCard />
     <Footer />
   </div>
