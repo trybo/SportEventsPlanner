@@ -18,30 +18,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Home</a>
+          <router-link class="nav-link px-3" to="/" >Home</router-link>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" >
           <a class="nav-link px-3" href="#">Events</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" v-if="user">
           <a class="nav-link px-3" href="#">Create event</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" v-if="user">
           <a class="nav-link px-3" href="#">Your events</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Sign in</a>
+        <li class="nav-item active" v-if="user==null">
+          <router-link class="nav-link px-3" to="/Login" >Sign in</router-link>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Sign up</a>
+        <li class="nav-item active" v-if="user==null">
+          <router-link class="nav-link px-3" to="/Register" >Sign up</router-link>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Profile</a>
+        <li class="nav-item active" v-if="user">
+          <router-link class="nav-link px-3" to="/Profile" >Profile</router-link>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link px-3" href="#">Logout</a>
+        <li class="nav-item active" v-if="user">
+         <router-link class="nav-link px-3" to="/Logout" >Logout</router-link>
         </li>
       </ul>
     </div>
@@ -49,6 +49,23 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+export default{
+data(){
+return {
+user:''
+}
+},
+methods:{
+	checkuser(){
+	this.user = firebase.auth().currentUser
+  console.log(this.user)
+  }
+	}
+,
+beforeMount(){
+this.checkuser()}
+}
 </script>
 
 <style>
