@@ -5,10 +5,12 @@ import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Register from '../components/Register';
 import Logout from '../components/Logout';
+import Events from '../views/Events.vue'
+
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
@@ -23,26 +25,31 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-  path: '/login',
-  name:'Login',
-  component:Login
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/register',
-    name:'Register',
-    component:Register
-    },
-    {
-      path: '/profile',
-      name:'Profile',
-      component:Profile
-      },
-      {
-        path: '/logout',
-        name:'Logout',
-        component:Logout
-        }
-  
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
+  },
+  {
+    path: '/events',
+    name: 'Events',
+    component: Events
+  }
+
 ]
 
 const router = new VueRouter({
