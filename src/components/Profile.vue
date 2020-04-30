@@ -2,9 +2,23 @@
   <div id="home-container" class="overflow-hidden">
     <Navbar />
     <h1 class="text-center my-4">Your profile</h1>
-    
-        <p>{{ this.form.email }}</p>
-        <p>{{ this.form.nickname }}</p>
+    <div class="row p-3 mb-2">
+      <div class="col-md-5">
+        <p><b>Nickname:</b> {{ this.form.nickname }}</p>
+        <p><b>Age:</b> </p>
+        <p><b>Email:</b> {{ this.form.email }}</p>
+
+        <div class="text-center">
+        <button type="button" class="btn text-white my-4">Join</button>
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn text-white my-4" @click="$emit('deleteUser')">Delete account</button>
+      </div>
+      </div>
+      <div class="col-md-7">
+         PHOTO
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -39,13 +53,36 @@ export default {
         const db=firebase.firestore();
         db.collection('users').doc(user.uid).get().then(doc=>{
         self.form.email=user.email;
-        self.form.nickname=doc.data().nickname})
+        self.form.nickname=doc.data().nickname
+        self.form.age=doc.data().age})
+        
         }
         else{
           router.push('/login')
         }
   })
     }
+  },
+  deleteUser () {
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('jest')
+      const user = firebase.auth().currentUser;
+      user.delete().then(() => {
+        console.log("User deleted")
+        router.push('/')
+        }).catch(err => {
+          if (err.code === "auth/requires-recent-login") {
+     //Re-authenticate the user and call again the Vue.js method
+  } else {
+     //....
+  }
+    });
+    }
+     else{
+      router.push('/login')
+    }
+    })  
   },
   beforeMount(){
     this.getData();
@@ -56,5 +93,9 @@ export default {
 #home-container {
   position: relative;
   min-height: 100vh;
+}
+.btn {
+  background-color: #003c8f !important;
+  width: 50%;
 }
 </style>
