@@ -5,7 +5,8 @@ import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Register from '../components/Register';
 import Logout from '../components/Logout';
-import Events from '../views/Events.vue'
+import Events from '../views/Events.vue';
+import Create from '../components/CreateEvent';
 
 
 Vue.use(VueRouter)
@@ -48,6 +49,11 @@ const routes = [
     path: '/events',
     name: 'Events',
     component: Events
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: Create
   }
 
 ]

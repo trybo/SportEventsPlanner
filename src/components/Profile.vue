@@ -4,6 +4,7 @@
   <Navbar />
   <p>{{this.form.email}}</p>
    <p>{{this.form.nickname}}</p>
+   <p>{{this.form.date}}</p>
    <Footer />
   </div>
 </template>
@@ -22,7 +23,7 @@ export default {
       form: {
         email:"",
         nickname:'',
-        age:''
+        date:''
       },
       error: null
     };
@@ -34,9 +35,11 @@ export default {
     if (user) {
       console.log('jest')
         const db=firebase.firestore();
-        db.collection('users').doc(user.uid).get().then(doc=>{
+        db.collection('users').doc(user.uid).get()
+        .then(doc=>{
         self.form.email=user.email;
-        self.form.nickname=doc.data().nickname})
+        self.form.nickname=user.displayName
+        self.form.date=doc.data().age})
         }
         else{
           router.push('/login')
