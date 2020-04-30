@@ -1,16 +1,19 @@
 <template>
-
-  <div class="overflow-hidden">
-  <Navbar />
-  <p>{{this.form.email}}</p>
-   <p>{{this.form.nickname}}</p>
-   <Footer />
+  <div id="home-container" class="overflow-hidden">
+    <Navbar />
+    <h1 class="text-center my-4">Your profile</h1>
+    
+        <p>{{ this.form.email }}</p>
+        <p>{{ this.form.nickname }}</p>
+    <Footer />
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
-import{router} from '../main'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import firebase from "firebase"
+import {router} from '../main'
 
 export default {
     components:{
@@ -47,10 +50,11 @@ export default {
   beforeMount(){
     this.getData();
   }
-}
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+};
 </script>
 <style>
-
+#home-container {
+  position: relative;
+  min-height: 100vh;
+}
 </style>
