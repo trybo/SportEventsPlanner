@@ -12,7 +12,7 @@
         <button type="button" class="btn text-white my-4">Join</button>
       </div>
       <div class="text-center">
-        <button type="button" class="btn text-white my-4" @click="$emit('deleteUser')">Delete account</button>
+        <button type="button" class="btn text-white my-4" @click="deleteUser">Delete account</button>
       </div>
       </div>
       <div class="col-md-7">
@@ -28,7 +28,6 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import firebase from "firebase"
 import {router} from '../main'
-
 export default {
     components:{
         Navbar,
@@ -49,7 +48,7 @@ export default {
       var self=this;
       firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log('jest')
+      
         const db=firebase.firestore();
         db.collection('users').doc(user.uid).get().then(doc=>{
         self.form.email=user.email;
@@ -60,34 +59,25 @@ export default {
         else{
           router.push('/login')
         }
-  })
-    }
-  },
+  })},
+    
+  
   deleteUser () {
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log('jest')
-      const user = firebase.auth().currentUser;
-      user.delete().then(() => {
-        console.log("User deleted")
-        router.push('/')
-        }).catch(err => {
-          if (err.code === "auth/requires-recent-login") {
-     //Re-authenticate the user and call again the Vue.js method
-  } else {
-     //....
+    if (confirm("Do you want to delete your account?")){
+    var user = firebase.auth().currentUser;
+
+user.delete().then(function() {
+  router.push('/')
+}).catch(function(error) {
+  console.log(error)
+});
   }
-    });
-    }
-     else{
-      router.push('/login')
-    }
-    })  
-  },
+  }
+    },
   beforeMount(){
     this.getData();
   }
-};
+}
 </script>
 <style>
 #home-container {
