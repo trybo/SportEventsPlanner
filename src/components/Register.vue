@@ -137,11 +137,13 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => {
+        .then(data => {
+          data.user.updateProfile({
+            displayName:this.form.name
+          })
             const db=firebase.firestore();
             var user=firebase.auth().currentUser;
             db.collection('users').doc(user.uid).set({
-      nickname: this.form.name,
       age: this.form.age
             })
         

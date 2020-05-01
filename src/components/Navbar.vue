@@ -21,10 +21,10 @@
           <router-link class="nav-link px-3" to="/" >Home</router-link>
         </li>
         <li class="nav-item active" >
-          <a class="nav-link px-3" href="/events">Events</a>
+          <router-link class="nav-link px-3" to="/Events" >Events</router-link>
         </li>
         <li class="nav-item active" v-if="user">
-          <a class="nav-link px-3" href="#">Create event</a>
+          <router-link class="nav-link px-3" to="/Create" >Create Event</router-link>
         </li>
         <li class="nav-item active" v-if="user">
           <a class="nav-link px-3" href="#">Your events</a>
