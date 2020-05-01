@@ -1,23 +1,21 @@
 <template>
-  <div class="overflow-hidden">
-   <Navbar />
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card" id="reg" style="width:800px; margin:0 auto;">
-          <div class="card-header">Register</div>
-          <div class="card-body">
-            <div style="color:red" v-if="error" class="alert alert-danger">{{error}}</div>
-            <form action="#" @submit.prevent="submit">
+  <div id="home-container" class="overflow-hidden">
+    <Navbar />
+    <div>
+      <div class="container d-flex vh-100 text-white justify-content-center align-items-center">
+        <div class="col-md-4 col-sm-6 col-12 text-center">
+          <div class="card" id="reg">
+            <div class="card-body">
+              <div class="h3 text-center">Sign up</div>
+              <div v-if="error" class="alert alert-danger">{{error}}</div>
 
-
-              <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-
-                <div class="col-md-6">
+              <form action="#" @submit.prevent="submit">
+                <div class="form-group row">
                   <input
                     id="email"
                     type="email"
-                    class="form-control"
+                    class="form-control mx-4"
+                    placeholder="Email"
                     name="email"
                     value
                     required
@@ -25,44 +23,35 @@
                     v-model="form.email"
                   />
                 </div>
-              </div>
 
-              <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                <div class="col-md-6">
+                <div class="form-group row">
                   <input
                     id="password"
                     type="password"
-                    class="form-control"
+                    class="form-control mx-4"
+                    placeholder="Password"
                     name="password"
                     required
                     v-model="form.password"
                   />
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="password2" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-
-                <div class="col-md-6">
+                <div class="form-group row">
                   <input
                     id="password2"
                     type="password"
-                    class="form-control"
+                    class="form-control mx-4"
+                    placeholder="Confirm Password"
                     name="password2"
                     required
                     v-model="form.password2"
                   />
                 </div>
-              </div>
                 <div class="form-group row">
-                 <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-
-                <div class="col-md-6">
                   <input
                     id="name"
                     type="text"
-                    class="form-control"
+                    class="form-control mx-4"
+                    placeholder="Name"
                     name="text"
                     value
                     required
@@ -70,15 +59,12 @@
                     v-model="form.name"
                   />
                 </div>
-              </div>
                 <div class="form-group row">
-                 <label for="age" class="col-md-4 col-form-label text-md-right">Date of birth</label>
-
-                <div class="col-md-6">
                   <input
                     id="age"
                     type="date"
-                    class="form-control"
+                    class="form-control mx-4"
+                    placeholder="Date of birth"
                     name="age"
                     value
                     required
@@ -86,14 +72,18 @@
                     v-model="form.age"
                   />
                 </div>
-              </div>
 
-              <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">Register</button>
+                <div class="text-center mb-3">
+                  <button type="submit" class="btn">Sign up</button>
                 </div>
-              </div>
-            </form>
+              </form>
+              <p>
+                If you have an account yet, please
+                <router-link to="/login">
+                  <span><b>Sign in</b></span>.
+                </router-link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -105,16 +95,12 @@
 
 <script>
 import firebase from "firebase";
-import{router} from '../main'
+import { router } from "../main";
 
-
-
-            
-            
 export default {
-    components:{
-        Navbar,
-        Footer
+  components: {
+    Navbar,
+    Footer
   },
   data() {
     return {
@@ -122,52 +108,54 @@ export default {
         name: "",
         email: "",
         password: "",
-        password2:"",
-        dateOfBirth:""
+        password2: "",
+        dateOfBirth: ""
       },
       error: null
     };
   },
   methods: {
     submit() {
-        if (this.form.password==this.form.password2){
-
-        
-        
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then(data => {
-          data.user.updateProfile({
-            displayName:this.form.name
-          })
-            const db=firebase.firestore();
-            var user=firebase.auth().currentUser;
-            db.collection('users').doc(user.uid).set({
-      age: this.form.age
-            })
-        
-            .then(() => {
-              router.push('/profile')
+      if (this.form.password == this.form.password2) {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.form.email, this.form.password)
+          .then(data => {
+            data.user.updateProfile({
+              displayName: this.form.name
             });
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
-    }
-    else{
-      this.error='Passwords must be the same';
-    }
+            const db = firebase.firestore();
+            var user = firebase.auth().currentUser;
+            db.collection("users")
+              .doc(user.uid)
+              .set({
+                age: this.form.age
+              })
+
+              .then(() => {
+                router.push("/profile");
+              });
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      } else {
+        this.error = "Passwords must be the same";
+      }
     }
   }
 };
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 </script>
 <style>
-#reg{
-    width: 50%;
-    margin-left:45%;
-    margin-top:10%;
+#home-container {
+  position: relative;
+  min-height: 100vh;
+}
+.btn {
+  background-color: #003c8f !important;
+  color: white !important;
+  width: 50%;
 }
 </style>

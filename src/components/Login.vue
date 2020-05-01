@@ -3,7 +3,7 @@
     <Navbar />
     <div>
       <div class="container d-flex vh-100 text-white justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-6 text-center">
+        <div class="col-sm-6 col-12 text-center">
           <div class="card" id="login">
             <div class="card-body">
               <div class="h3 text-center">Sign in</div>
@@ -128,6 +128,5 @@ import Footer from "@/components/Footer";
 .btn {
   background-color: #003c8f !important;
   color: white !important;
-  width: 50%;
 }
 </style>
