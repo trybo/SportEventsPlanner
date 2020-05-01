@@ -51,12 +51,9 @@
           <button type="button" class="btn text-white my-4" @click="deleteUser">Delete account</button>
         </div>
       </div>
-      <div class="col-md-6">
-
-        <p><img id="avatar" class="rounded-circle m-auto" style="width:200px;height:200px;object-fit:cover;"></p>
+      <div class="col-md-5 mx-4">
+        <p><img id="avatar" class="rounded-circle" style="width:200px;height:200px;object-fit:cover;"></p>
         <input type="file" @change="onFileSelected">
-
-
       </div>
     </div>
     <Footer />
