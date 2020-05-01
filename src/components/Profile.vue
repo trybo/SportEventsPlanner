@@ -2,7 +2,7 @@
   <div id="home-container" class="overflow-hidden">
     <Navbar />
     <h1 class="text-center my-4">Your profile</h1>
-    <div class="row p-3 mb-2">
+    <div class="row">
       <div class="col-md-5 mx-4">
         <p>
           <b>Nickname:</b>
@@ -16,43 +16,58 @@
           <b>Email:</b>
           {{ this.form.email }}
         </p>
-<div style="color:red" v-if="error" class="alert alert-danger">{{error}}</div>
+
         <form action="#" @submit.prevent="updatePassword" id="form-change-password">
           <div class="form-row">
             <div class="col">
-              <input id="password"
-                    type="password"
-                    class="form-control"
-                    placeholder="New password" 
-                    name="password"
-                    required
-                    v-model="form.password" />
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                placeholder="New password"
+                name="password"
+                required
+                v-model="form.password"
+              />
             </div>
             <div class="col">
-              <input id="password2"
-                    type="password"
-                    class="form-control"
-                    placeholder="Confirm password" 
-                    name="password2"
-                    required
-                    v-model="form.password2" />
+              <input
+                id="password2"
+                type="password"
+                class="form-control"
+                placeholder="Confirm password"
+                name="password2"
+                required
+                v-model="form.password2"
+              />
             </div>
           </div>
           <div class="text-center">
-          <button type="submit" class="btn text-white my-4">Change password</button>
-        </div>
+            <button type="submit" class="btn text-white my-4">Change password</button>
+          </div>
         </form>
 
         <div class="text-center">
           <button type="button" class="btn text-white my-4" @click="deleteUser">Delete account</button>
         </div>
       </div>
-      <div class="col-md-7 mx-4">PHOTO</div>
+      <div class="col-md-6">
+       
+       <div class="custom-file" id="customFile" lang="en">
+        <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
+        <label class="custom-file-label" for="exampleInputFile">
+           Select profile picture...
+        </label>
+</div>
+
+
+
+
+      </div>
     </div>
     <Footer />
   </div>
 </template>
-
 
 <script>
 import Navbar from "@/components/Navbar";
@@ -71,7 +86,7 @@ export default {
         nickname: "",
         age: "",
         password: "",
-        password2: "",
+        password2: ""
       },
       error: null
     };
@@ -95,25 +110,27 @@ export default {
         }
       });
     },
-  updatePassword(){
-    if (this.form.password==this.form.password2){
-      var user = firebase.auth().currentUser;
-      var passForm = document.getElementById("form-change-password");
-       
-        user.updatePassword(this.form.password).then(function() {
-          // Update successful.
-          alert("Password has been updated!")
-          passForm.reset()
-        }).catch(function(error) {
-          // An error happened.
-          console.log(error);
-          alert(`${error}`)
-        });
-    }
-    else {
-         alert("Passwords are not the same!")
-        }
-  },
+    updatePassword() {
+      if (this.form.password == this.form.password2) {
+        var user = firebase.auth().currentUser;
+        var passForm = document.getElementById("form-change-password");
+
+        user
+          .updatePassword(this.form.password)
+          .then(function() {
+            // Update successful.
+            alert("Password has been updated!");
+            passForm.reset();
+          })
+          .catch(function(error) {
+            // An error happened.
+            console.log(error);
+            alert(`${error}`);
+          });
+      } else {
+        alert("Passwords are not the same!");
+      }
+    },
     deleteUser() {
       if (confirm("Do you want to delete your account?")) {
         var user = firebase.auth().currentUser;
@@ -142,5 +159,10 @@ export default {
 .btn {
   background-color: #003c8f !important;
   width: 50%;
+}
+.custom-file-input ~ .custom-file-label::after {
+    content: "Button Text";
+    background-color: #003c8f !important;
+    color: #ffffff;
 }
 </style>
