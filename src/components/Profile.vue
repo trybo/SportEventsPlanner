@@ -3,7 +3,7 @@
     <Navbar />
     <h1 class="text-center my-4">Your profile</h1>
     <div class="row p-3 mb-2">
-      <div class="col-md-5">
+      <div class="col-md-5 mx-4">
         <p>
           <b>Nickname:</b>
           {{ this.form.nickname }}
@@ -47,7 +47,7 @@
           <button type="button" class="btn text-white my-4" @click="deleteUser">Delete account</button>
         </div>
       </div>
-      <div class="col-md-7">PHOTO</div>
+      <div class="col-md-7 mx-4">PHOTO</div>
     </div>
     <Footer />
   </div>
