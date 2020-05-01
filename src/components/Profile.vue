@@ -52,15 +52,9 @@
         </div>
       </div>
       <div class="col-md-6">
-       
-       <div class="custom-file" id="customFile" lang="en">
-        <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
-        <label class="custom-file-label" for="exampleInputFile">
-           Select profile picture...
-        </label>
-</div>
 
-
+        <p><img id="avatar" class="rounded-circle m-auto" style="width:200px;height:200px;object-fit:cover;"></p>
+        <input type="file" @change="onFileSelected">
 
 
       </div>
@@ -86,7 +80,8 @@ export default {
         nickname: "",
         age: "",
         password: "",
-        password2: ""
+        password2: "",
+        uid: null
       },
       error: null
     };
@@ -144,9 +139,30 @@ export default {
             console.log(error);
           });
       }
+    },
+    onFileSelected(e) {
+    var user = firebase.auth().currentUser;
+    this.uid = user.uid;
+     let file = e.target.files[0];
+     var storageRef = firebase.storage().ref('/profilepicture/'+ this.uid);
+     storageRef.put(file);
+    },
+    fileLoad(){
+      var user = firebase.auth().currentUser;
+      this.uid = user.uid;
+      
+      var storageReference = firebase.storage();
+      storageReference.ref('profilepicture/' + this.uid).getDownloadURL().then(function(url) {
+        document.getElementById("avatar").src = url;
+      })
+    },
+    showPhoto() {
+      this.fileLoad();
     }
+  
   },
   beforeMount() {
+    this.showPhoto();
     this.getData();
   }
 };
@@ -159,10 +175,5 @@ export default {
 .btn {
   background-color: #003c8f !important;
   width: 50%;
-}
-.custom-file-input ~ .custom-file-label::after {
-    content: "Button Text";
-    background-color: #003c8f !important;
-    color: #ffffff;
 }
 </style>
