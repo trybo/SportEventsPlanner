@@ -5,6 +5,7 @@ import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as firebase from 'firebase';
+import * as VueGoogleMaps from "vue2-google-maps";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAO7wjG_KgdfONU9xQOIIgZ2ig4kKd7jBQ",
@@ -17,7 +18,13 @@ var firebaseConfig = {
   measurementId: "G-T6HJRV285E"
 };
 firebase.initializeApp(firebaseConfig);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyBV0SpZO9MW1cTHYq7FHKAuYhDaVOwc0vA",
+    libraries: "places" // necessary for places input
+  }
+});
 
 new Vue({
   router,

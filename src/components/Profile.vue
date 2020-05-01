@@ -5,7 +5,7 @@
     <div class="row p-3 mb-2">
       <div class="col-md-5">
         <p><b>Nickname:</b> {{ this.form.nickname }}</p>
-        <p><b>Age:</b> </p>
+        <p><b>Age:</b>{{this.form.age}} </p>
         <p><b>Email:</b> {{ this.form.email }}</p>
 
         <div class="text-center">
@@ -21,9 +21,11 @@
     </div>
     <Footer />
   </div>
-</template>
+  </template>
+
 
 <script>
+
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import firebase from "firebase"
@@ -52,7 +54,7 @@ export default {
         const db=firebase.firestore();
         db.collection('users').doc(user.uid).get().then(doc=>{
         self.form.email=user.email;
-        self.form.nickname=doc.data().nickname
+        self.form.nickname=user.displayName;
         self.form.age=doc.data().age})
         
         }
