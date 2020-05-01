@@ -27,7 +27,7 @@
           <router-link class="nav-link px-3" to="/Create" >Create Event</router-link>
         </li>
         <li class="nav-item active" v-if="user">
-          <a class="nav-link px-3" href="#">Your events</a>
+          <router-link class="nav-link px-3" to="/YourEvents" >Your Events</router-link>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">

@@ -66,7 +66,7 @@
                   <gmap-autocomplete id="location" class="form-control"
           @place_changed="setPlace"  >
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click.prevent="addMarker">Add</button>
                 </div>
               </div>
               
@@ -126,7 +126,7 @@ export default {
         location:'',
         
         users:[
-          {name:''}
+          
           
         ]
        
@@ -146,10 +146,10 @@ export default {
           }
         else{
         
-          this.form.users[0].name=firebase.auth().currentUser.displayName;
+          this.form.users[0]=firebase.auth().currentUser.uid;
 
             const db=firebase.firestore();
-            db.collection('events').doc('test').set({
+            db.collection('events').doc().set({
               date: this.form.date,
               slots:this.form.slots,
               type:this.form.type,
@@ -182,14 +182,11 @@ export default {
         this.center = marker;
         this.currentPlace = null;
       }
-      this.form.location=document.getElementById('location').value
+    this.form.location=document.getElementById('location').value
     },
   },
 
-    mounted() {
 
-      
-    }
 };
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
