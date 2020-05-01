@@ -1,5 +1,5 @@
 <template>
-  <div id="home-container" class="overflow-hidden">
+  <div id="home-container" class="overflow-auto">
     <Navbar />
     <h1 class="text-center my-4">Your profile</h1>
     <div class="row">
@@ -51,7 +51,7 @@
           <button type="button" class="btn text-white my-4" @click="deleteUser">Delete account</button>
         </div>
       </div>
-      <div class="col-md-5 mx-4">
+      <div class="col-md-6 text-center mb-4">
         <p><img id="avatar" class="rounded-circle" style="width:200px;height:200px;object-fit:cover;"></p>
         <input type="file" @change="onFileSelected">
       </div>
@@ -77,8 +77,7 @@ export default {
         nickname: "",
         age: "",
         password: "",
-        password2: "",
-        uid: null
+        password2: ""
       },
       error: null
     };
@@ -151,6 +150,7 @@ export default {
       var storageReference = firebase.storage();
       storageReference.ref('profilepicture/' + this.uid).getDownloadURL().then(function(url) {
         document.getElementById("avatar").src = url;
+        
       })
     },
     showPhoto() {
