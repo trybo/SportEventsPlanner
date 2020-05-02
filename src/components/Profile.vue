@@ -1,8 +1,12 @@
 <template>
-  <div id="profile-container" class="overflow-auto">
+  <div id="profile-container" class="overflow-hidden">
     <Navbar />
-    <div class="container d-flex justify-content-center align-items-center">
+
     <h1 class="text-center my-4">Your profile</h1>
+
+    <div class="container d-flex justify-content-center align-items-center">
+       
+    
     <div class="row">
       <div class="col-md-5 mx-4">
         <p>

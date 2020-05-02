@@ -50,7 +50,7 @@
                   <button type="submit" class="btn">Sign in</button>
                 </div>
                 <p>
-                  Forgot your password?
+                  Forgot your password? <a href="#" @click="resetPassword">Click here</a>
                 </p>
               </form>
             </div>
@@ -93,6 +93,20 @@ export default {
         .catch(err => {
           this.error = err.message;
         });
+    },
+    resetPassword() {
+      var auth = firebase.auth();
+      var emailAddress = this.form.email;
+      if (emailAddress==''){
+        alert('Select email!')
+      }
+      else{
+      auth.sendPasswordResetEmail(emailAddress).then(function() {
+        alert('Email sent.')
+      }).catch(function(error) {
+        console.log(error.message);
+      });
+      }
     },
     async facebookLogin() {
       try {
