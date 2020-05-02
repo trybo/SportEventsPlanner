@@ -146,6 +146,14 @@ export default {
         this.error = "Passwords must be the same";
       }
     }
+  },
+  beforeMount(){
+          firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+          router.push("/");
+        } 
+      });
   }
 };
 </script>
