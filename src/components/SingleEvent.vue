@@ -6,7 +6,7 @@
     <div class="row p-3 mb-2">
     <div class="col-md-6 px-5">
     <button class="btn" v-if="isUser" @click.prevent="JoinEvent()">Join</button>
-    <button class="btn" style=width: v-if="!isUser" @click.prevent="LeaveEvent()">Leave Event</button>
+    <button class="btn" style=width: v-if="isUser2" @click.prevent="LeaveEvent()">Leave Event</button>
     <div v-if="getDateTime!=null">
     <p><img :src="`https://www.weatherbit.io/static/img/icons/${getDateTime.weather.icon}.png`"></p>
     <p>{{getDateTime.weather.description}}</p>
@@ -54,6 +54,7 @@ import Footer from '@/components/Footer'
 import firebase from "firebase"
 import {router} from '../main';
 import axios from 'axios'
+import{ApiKey1} from '../main';
 
 export default {
     components:{
@@ -63,6 +64,7 @@ export default {
   data() {
     return {
       isUser:'',
+      isUser2:'',
       event: {
         date:"",
         slots:'',
@@ -100,13 +102,16 @@ export default {
         self.event.users=doc.data().users;
         self.event.admin=doc.data().admin;
         self.isUser=!(self.event.users.includes(firebase.auth().currentUser.uid))
+        self.isUser2=self.event.users.includes(firebase.auth().currentUser.uid)
+        
         if (self.isUser==true){
           if(self.event.users.length+1>self.event.slots){
             self.isUser=false;
           }
         }
         
-            axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${self.markers[0].position.lat}&lon=${self.markers[0].position.lng}&key=33861278706f4532ac1095323e61243a`)
+        
+      axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${self.markers[0].position.lat}&lon=${self.markers[0].position.lng}&key=${ApiKey1}`)
     .then(response => ( self.info=response.data.data));
    
       
@@ -179,6 +184,7 @@ router.push('/YourEvents')
   },
  
   beforeMount(){
+
     this.getData()
     
 },

@@ -11,13 +11,15 @@
         <th> Event date</th>
         <th>Event location</th>
         <th></th>
+        <th></th>
         </thead>
         <tbody id="show">
-        <tr v-for="(event,index) in form.events" :key="index" @dblclick.prevent="goEvent(event)">
+        <tr v-for="(event,index) in form.events" :key="index">
         <td>{{event.no}}</td>
         <td>{{event.type}}</td>
         <td>{{event.date}}</td>
         <td>{{event.location}}</td>
+        <td><button class="btn" @click.prevent="goEvent(event)">Details</button></td>
         <td v-if="event.isAdmin"><button class="btn" @click.prevent="deleteEvent(event,index)">Delete</button></td>
         <td v-else ></td>
        
