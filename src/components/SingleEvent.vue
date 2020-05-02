@@ -6,6 +6,7 @@
     <div class="row p-3 mb-2">
     <div class="col-md-6 px-5">
     <button class="btn" v-if="isUser" @click.prevent="JoinEvent()">Join</button>
+    <button class="btn" style=width: v-if="!isUser" @click.prevent="LeaveEvent()">Leave Event</button>
     <div v-if="getDateTime!=null">
     <p><img :src="`https://www.weatherbit.io/static/img/icons/${getDateTime.weather.icon}.png`"></p>
     <p>{{getDateTime.weather.description}}</p>
@@ -69,7 +70,8 @@ export default {
         usersNickname:[],
         location:'',
         time:'',
-        level:'' 
+        level:'' ,
+        admin:''
       },
         center: {  },
       markers: [],
@@ -96,6 +98,7 @@ export default {
         self.center=self.markers[0].position;
         self.event.usersNickname=doc.data().usersNickname;
         self.event.users=doc.data().users;
+        self.event.admin=doc.data().admin;
         self.isUser=!(self.event.users.includes(firebase.auth().currentUser.uid))
         if (self.isUser==true){
           if(self.event.users.length+1>self.event.slots){
@@ -115,12 +118,8 @@ export default {
 
 })
     },
-    GenerateWeather(info){
-     
-      console.log(info)
-    }
 
-    ,
+    
     JoinEvent(){
       var self=this;
       self.event.users.push(firebase.auth().currentUser.uid)
@@ -135,7 +134,32 @@ export default {
       
         console.log('error');
       
-    }
+    },
+    LeaveEvent(){
+      if(confirm('Do you want to leave this event?')){
+        
+        
+          if (this.event.admin==firebase.auth().currentUser.uid){
+            
+            alert('Admin cannot leave event')
+          }
+          else{
+             var DeleteIndex=(this.event.users.indexOf(firebase.auth().currentUser.uid))
+             this.event.users.splice(DeleteIndex,1);
+             this.event.usersNickname.splice(DeleteIndex,1);
+              const db1=firebase.firestore();
+             db1.collection('events').doc(this.$route.params.id).update({
+              users:this.event.users,
+              usersNickname:this.event.usersNickname
+              
+        })
+router.push('/YourEvents')
+            
+          }
+
+      }
+
+  }
   },
   computed:{
     getDateTime: function (){
@@ -149,6 +173,7 @@ export default {
       }
       return thisDate;
       }
+      
     
 
   },

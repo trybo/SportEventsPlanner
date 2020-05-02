@@ -158,14 +158,10 @@ export default {
         level:'',
         
         users:[
-          {
-            
-          } 
+
         ],
         usersNickname:[
-          {
-            
-          }
+
         ]
        
 

@@ -167,6 +167,12 @@ export default {
   
   },
   beforeMount() {
+     firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (!user) {
+          router.push("/");
+        } 
+      })
     this.showPhoto();
     this.getData();
   }
