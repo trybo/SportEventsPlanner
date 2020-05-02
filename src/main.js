@@ -6,6 +6,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as firebase from 'firebase';
 import * as VueGoogleMaps from "vue2-google-maps";
+import './registerServiceWorker'
 
 var firebaseConfig = {
   apiKey: "AIzaSyAO7wjG_KgdfONU9xQOIIgZ2ig4kKd7jBQ",
