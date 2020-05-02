@@ -29,6 +29,23 @@
               </div>
 
               <div class="form-group row">
+                <label for="date" class="col-md-4 col-form-label text-md-right">Hour</label>
+
+                <div class="col-md-6">
+                  <input
+                    id="hour"
+                    type="time"
+                    class="form-control"
+                    name="time"
+                    value
+                    required
+                    autofocus
+                    v-model="form.time"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
                 <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
 
                 <div class="col-md-6">
@@ -43,12 +60,23 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label for="type" class="col-md-4 col-form-label text-md-right">Level</label>
+
+                <div class="col-md-6">
+                  <select id='level' v-model="form.level" class="form-control">
+                    <option value="Low">Low</option>
+                     <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="slots" class="col-md-4 col-form-label text-md-right">Slots</label>
 
                 <div class="col-md-6">
                   <input
                     id="slots"
-                    type="slots"
+                    type="number"
                     class="form-control"
                     name="slots"
                     required
@@ -124,6 +152,8 @@ export default {
         type:'',
         slots:'',
         location:'',
+        time:'',
+        level:'',
         
         users:[
           {
@@ -164,6 +194,9 @@ export default {
               location:this.form.location,
               users:this.form.users,
               markers:this.markers,
+              level:this.form.level,
+              time:this.form.time,
+
               admin:firebase.auth().currentUser.uid,
               usersNickname:this.form.usersNickname
             })

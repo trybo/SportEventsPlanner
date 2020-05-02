@@ -2,11 +2,20 @@
   <div id="home-container" class="overflow-hidden">
     <Navbar />
     <h1 class="text-center my-4">Event</h1>
+
     <div class="row p-3 mb-2">
     <div class="col-md-6">
     <button v-if="isUser" @click.prevent="JoinEvent()">Join</button>
+    <div v-if="getDateTime!=null">
+    <p><img :src="`https://www.weatherbit.io/static/img/icons/${getDateTime.weather.icon}.png`"></p>
+    <p>{{getDateTime.weather.description}}</p>
+    <p>Max Temp : {{getDateTime.max_temp}}</p>
+    </div>
+    <br>
     <p>Type: {{event.type}}</p>
+    <p>Level: {{event.level}}</p>
     <p>Date: {{event.date}}</p>
+    <p>Hour: {{event.time}}</p>
     <p>Location: {{event.location}}</p>
     <p>Slots: {{event.slots}}</p>
     <ul>
@@ -43,6 +52,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import firebase from "firebase"
 import {router} from '../main';
+import axios from 'axios'
 
 export default {
     components:{
@@ -58,13 +68,16 @@ export default {
         users:[],
         usersNickname:[],
         location:'',
+        time:'',
+        level:'' 
       },
         center: {  },
       markers: [],
       places: [],
       currentPlace: null,
       
-      error: null
+      error: null,
+      info:'',
     }
   },
   methods: {
@@ -76,6 +89,8 @@ export default {
         self.event.date=doc.data().date;
         self.event.slots=doc.data().slots;
         self.event.type=doc.data().type;
+        self.event.level=doc.data().level;
+        self.event.time=doc.data().time;
         self.event.location=doc.data().location;
         self.markers=doc.data().markers;
         self.center=self.markers[0].position;
@@ -87,11 +102,25 @@ export default {
             self.isUser=false;
           }
         }
+        
+            axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${self.markers[0].position.lat}&lon=${self.markers[0].position.lng}&key=33861278706f4532ac1095323e61243a`)
+    .then(response => ( self.info=response.data.data));
+   
+      
+    
+
+        
 
 
 
 })
     },
+    GenerateWeather(info){
+     
+      console.log(info)
+    }
+
+    ,
     JoinEvent(){
       var self=this;
       self.event.users.push(firebase.auth().currentUser.uid)
@@ -107,11 +136,28 @@ export default {
         console.log('error');
       
     }
-  }, 
+  },
+  computed:{
+    getDateTime: function (){
+      var thisDate
+      for(var element of this.info){
+        if (element.datetime==this.event.date){
+          
+          thisDate=element;
+        }
+
+      }
+      return thisDate;
+      }
+    
+
+  },
+ 
   beforeMount(){
     this.getData()
-           
-}
+    
+},
+
 }
 </script>
 <style>
