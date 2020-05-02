@@ -230,6 +230,14 @@ export default {
     this.form.location=document.getElementById('location').value
     },
   },
+    beforeMount(){
+          firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (!user) {
+          router.push("/");
+        } 
+      });
+  }
 
 
 };
