@@ -78,12 +78,12 @@
                   <button type="submit" class="btn">Sign up</button>
                 </div>
               </form>
-              <card-text>
+              <p>
                 If you have an account yet, please
                 <router-link to="/login">
                   <b>Sign in</b>.
                 </router-link>
-              </card-text>
+              </p>
             </div>
           </div>
         </div>

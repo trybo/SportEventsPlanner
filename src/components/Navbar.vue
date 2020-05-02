@@ -11,7 +11,7 @@
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
-      v-on:click="toggleNavbar"
+      v-on:click.prevent="toggleNavbar"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
