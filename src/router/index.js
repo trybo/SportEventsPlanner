@@ -7,7 +7,8 @@ import Register from '../components/Register';
 import Logout from '../components/Logout';
 import Events from '../views/Events.vue';
 import Create from '../components/CreateEvent';
-
+import YourEvents from '../components/YourEvents';
+import SingleEvent from '../components/SingleEvent';
 
 Vue.use(VueRouter)
 
@@ -54,7 +55,18 @@ const routes = [
     path: '/create',
     name: 'Create',
     component: Create
+  },
+  {
+    path: '/YourEvents',
+    name: 'YourEvents',
+    component: YourEvents
+  },
+  {
+    path:'/SingleEvent/:id',
+    name:'SingleEvent',
+    component:SingleEvent
   }
+  
 
 ]
 

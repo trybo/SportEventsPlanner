@@ -53,7 +53,7 @@
       </div>
       <div class="col-md-6 text-center mb-4">
         <p><img id="avatar" class="rounded-circle" style="width:200px;height:200px;object-fit:cover;"></p>
-        <input type="file" @change="onFileSelected">
+        <input type="file" @change.prevent="onFileSelected">
       </div>
     </div>
     <Footer />

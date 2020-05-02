@@ -66,7 +66,7 @@
                   <gmap-autocomplete id="location" class="form-control"
           @place_changed="setPlace"  >
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click.prevent="addMarker">Add</button>
                 </div>
               </div>
               
@@ -126,15 +126,22 @@ export default {
         location:'',
         
         users:[
-          {name:''}
-          
+          {
+            
+          } 
+        ],
+        usersNickname:[
+          {
+            
+          }
         ]
        
 
       },
       error: null,
                     center: { lat: 45.508, lng: -73.587 },
-      markers: [],
+      markers: [{lat:53.1233959,leng:23.0863406
+}],
       places: [],
       currentPlace: null,
     };
@@ -145,17 +152,20 @@ export default {
             this.error='You need to select location';
           }
         else{
-        
-          this.form.users[0].name=firebase.auth().currentUser.displayName;
 
+          this.form.usersNickname[0]=firebase.auth().currentUser.displayName;
+          this.form.users[0]=firebase.auth().currentUser.uid;
+            
             const db=firebase.firestore();
-            db.collection('events').doc('test').set({
+            db.collection('events').doc().set({
               date: this.form.date,
               slots:this.form.slots,
               type:this.form.type,
               location:this.form.location,
               users:this.form.users,
-              admin:firebase.auth().currentUser.uid
+              markers:this.markers,
+              admin:firebase.auth().currentUser.uid,
+              usersNickname:this.form.usersNickname
             })
         
             .then(() => {
@@ -167,7 +177,7 @@ export default {
         });
     
     
-    }},    setPlace(place) {
+    }}, setPlace(place) {
       this.currentPlace = place;
     },
     addMarker() {
@@ -182,14 +192,11 @@ export default {
         this.center = marker;
         this.currentPlace = null;
       }
-      this.form.location=document.getElementById('location').value
+    this.form.location=document.getElementById('location').value
     },
   },
 
-    mounted() {
 
-      
-    }
 };
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'

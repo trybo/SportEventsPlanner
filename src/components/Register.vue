@@ -144,7 +144,8 @@ export default {
             const db=firebase.firestore();
             var user=firebase.auth().currentUser;
             db.collection('users').doc(user.uid).set({
-      age: this.form.age
+      age: this.form.age,
+      nickname: this.form.name
             })
         
             .then(() => {
