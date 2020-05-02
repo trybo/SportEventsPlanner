@@ -1,6 +1,7 @@
 <template>
-  <div id="home-container" class="overflow-auto">
+  <div id="profile-container" class="overflow-auto">
     <Navbar />
+    <div class="container d-flex justify-content-center align-items-center">
     <h1 class="text-center my-4">Your profile</h1>
     <div class="row">
       <div class="col-md-5 mx-4">
@@ -55,6 +56,7 @@
         <p><img id="avatar" class="rounded-circle" style="width:200px;height:200px;object-fit:cover;"></p>
         <input type="file" @change.prevent="onFileSelected">
       </div>
+    </div>
     </div>
     <Footer />
   </div>
@@ -165,9 +167,12 @@ export default {
 };
 </script>
 <style>
-#home-container {
+#profile-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+ display: block;
   position: relative;
-  min-height: 100vh;
+  padding-bottom: 100px;
 }
 .btn {
   background-color: #003c8f !important;
