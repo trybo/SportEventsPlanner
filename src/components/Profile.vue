@@ -131,6 +131,8 @@ export default {
     deleteUser() {
       if (confirm("Do you want to delete your account?")) {
         var user = firebase.auth().currentUser;
+                const db = firebase.firestore();
+        db.collection("users").doc(user.uid).delete();
 
         user
           .delete()
