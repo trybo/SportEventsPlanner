@@ -72,7 +72,7 @@ export default {
   border-color: #003c8f !important;
 }
 .card-body {
-  background-color: #5e92f3 !important;
+  background-color: #5e92f3;
   color: black;
 }
 .btn {
