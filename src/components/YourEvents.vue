@@ -13,12 +13,12 @@
         <th></th>
         </thead>
         <tbody id="show">
-        <tr v-for="event in form.events" :key="event.no" @click.prevent="goEvent(event)">
+        <tr v-for="(event,index) in form.events" :key="index" @dblclick.prevent="goEvent(event)">
         <td>{{event.no}}</td>
         <td>{{event.type}}</td>
         <td>{{event.date}}</td>
         <td>{{event.location}}</td>
-        <td v-if="event.isAdmin"><button>Delete</button></td>
+        <td v-if="event.isAdmin"><button @click.prevent="deleteEvent(event,index)">Delete</button></td>
         <td v-else ></td>
        
         </tr>
@@ -53,7 +53,7 @@ export default {
     };
   },
   methods: {
-    getData() {
+    getData() { 
       var self=this;
       firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -86,9 +86,21 @@ export default {
     
   
   goEvent(event){
-    router.push('/SingleEvent/'+event.id)
+    router.push('/SingleEvent/'+event.id) 
+  },
+  deleteEvent(event){
+    var self=this;
+    if(confirm('Do you want to delete this event?')){
+    const db=firebase.firestore();
+    db.collection('events').doc(event.id).delete();
+    self.form.events=[];
+    this.getData();
+
+    
+    }
   }
     },
+    
   beforeMount(){
     this.getData();
     
