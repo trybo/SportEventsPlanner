@@ -4,20 +4,20 @@
     <h1 class="text-center my-4">Event</h1>
 
     <div class="row p-3 mb-2">
-    <div class="col-md-6">
-    <button v-if="isUser" @click.prevent="JoinEvent()">Join</button>
+    <div class="col-md-6 px-5">
+    <button class="btn" v-if="isUser" @click.prevent="JoinEvent()">Join</button>
     <div v-if="getDateTime!=null">
     <p><img :src="`https://www.weatherbit.io/static/img/icons/${getDateTime.weather.icon}.png`"></p>
     <p>{{getDateTime.weather.description}}</p>
-    <p>Max Temp : {{getDateTime.max_temp}}</p>
+    <p><b>Max Temp:</b> {{getDateTime.max_temp}}</p>
     </div>
     <br>
-    <p>Type: {{event.type}}</p>
-    <p>Level: {{event.level}}</p>
-    <p>Date: {{event.date}}</p>
-    <p>Hour: {{event.time}}</p>
-    <p>Location: {{event.location}}</p>
-    <p>Slots: {{event.slots}}</p>
+    <p><b>Type:</b> {{event.type}}</p>
+    <p><b>Level:</b> {{event.level}}</p>
+    <p><b>Date:</b> {{event.date}}</p>
+    <p><b>Hour:</b> {{event.time}}</p>
+    <p><b>Location:</b> {{event.location}}</p>
+    <p><b>Slots:</b> {{event.slots}}</p>
     <ul>
     <li v-for="(element,index) in event.usersNickname" :key="index">{{element}}
     </li>

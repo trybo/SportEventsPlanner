@@ -1,11 +1,11 @@
 <template>
 
-  <div class="overflow-hidden">
+  <div id="create-container" class="overflow-hidden">
    <Navbar />
+   <h1 class="text-center my-4">Create Event</h1>
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card" id="reg" style="width:800px; margin:0 auto;">
-          <div class="card-header">Create Event</div>
           <div class="card-body">
             <div style="color:red" v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="submit">
@@ -94,7 +94,7 @@
                   <gmap-autocomplete id="location" class="form-control"
           @place_changed="setPlace"  >
         </gmap-autocomplete>
-        <button @click.prevent="addMarker">Add</button>
+        <button class="btn my-4" @click.prevent="addMarker">Add</button>
                 </div>
               </div>
               
@@ -114,8 +114,10 @@
             </div>
 
               <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">Create Event</button>
+                
+                  <div class="text-center">
+                  <button type="submit" class="btn mt-4 btn-create">Create Event</button>
+                
                 </div>
               </div>
             </form>
@@ -236,6 +238,21 @@ import Footer from '@/components/Footer'
 
 </script>
 <style>
+#create-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+ display: block;
+  position: relative;
+  padding-bottom: 100px;
+}
+.btn {
+  background-color: #003c8f !important;
+  color: white !important;
+}
+.btn-create{
+  width: 50%;
+  margin-left: 45%;
+}
 #reg{
     width: 50%;
     margin-left:45%;

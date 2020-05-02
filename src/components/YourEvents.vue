@@ -4,7 +4,7 @@
     <h1 class="text-center my-4">Your Events</h1>
     <div class="row p-3 mb-2">
       <div class="col-md-12">
-        <table class="table table-striped">
+        <table class="table table-striped text-white">
         <thead>
         <th>No</th>
         <th> Event type</th>
@@ -18,7 +18,7 @@
         <td>{{event.type}}</td>
         <td>{{event.date}}</td>
         <td>{{event.location}}</td>
-        <td v-if="event.isAdmin"><button @click.prevent="deleteEvent(event,index)">Delete</button></td>
+        <td v-if="event.isAdmin"><button class="btn" @click.prevent="deleteEvent(event,index)">Delete</button></td>
         <td v-else ></td>
        
         </tr>
@@ -114,6 +114,6 @@ export default {
 }
 .btn {
   background-color: #003c8f !important;
-  width: 50%;
+  width: 100% !important;
 }
 </style>
