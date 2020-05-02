@@ -1,8 +1,8 @@
 <template>
-  <div class="card ">
+  <div class="card rounded mx-4 my-5">
     <div class="card-body">
       <h3 class="card-title text-center p-4">
-        <u>{{ type }}</u>
+        <u>{{ sport }}</u>
       </h3>
       <h4 class="card-subtitle p-2">
         <svg
@@ -24,7 +24,7 @@
             clip-rule="evenodd"
           />
         </svg>
-        {{ date }}
+        {{ date.toDate() }}
       </h4>
       <h4 class="card-subtitle p-2">
         <svg
@@ -45,25 +45,18 @@
             d="M2.5 11h1v1h-1v-1zm2 0h1v1h-1v-1zm-2 2h1v1h-1v-1zm2 0h1v1h-1v-1zm6-10h1v1h-1V3zm2 0h1v1h-1V3zm-4 2h1v1h-1V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm-2 2h1v1h-1V7zm2 0h1v1h-1V7zm-4 0h1v1h-1V7zm0 2h1v1h-1V9zm2 0h1v1h-1V9zm2 0h1v1h-1V9zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1z"
           />
         </svg>
-        {{ location }}
+        {{ place }}
       </h4>
       <div class="text-center">
-        <button type="button" class="btn text-white my-4" @click.prevent="goEvent">Join</button>
+        <button type="button" class="btn text-white my-4">Join</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { router } from "../main";
 export default {
- props: ['type', 'location', 'date','id'],
- methods: {
-     goEvent(){
-      router.push('/SingleEvent/'+this.id)
-   
-  }
- }
+ props: ['sport', 'place', 'date']
 };
 </script>
 

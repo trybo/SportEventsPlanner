@@ -13,5 +13,9 @@ export default {};
 <style>
 #footer {
   background-color: #003c8f;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 </style>

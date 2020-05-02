@@ -2,8 +2,8 @@
   <div id="home-container" class="overflow-hidden">
     <Navbar />
     <h1 class="text-center my-4">All events</h1>
-    <div class="card-columns m-4 ">
-        <EventCard v-for="event in events" :key="event.id" v-bind:type="event.type" v-bind:location="event.location" v-bind:date="event.date" v-bind:id="event.id"></EventCard>
+    <div class="card-deck mx-4 mb-5">
+        <EventCard v-for="event in events" :key="event.id" v-bind:sport="event.sport" v-bind:place="event.place" v-bind:date="event.date"></EventCard>
     </div>
     <Footer />
   </div>
@@ -31,7 +31,6 @@ export default {
       db.collection("events").get().then(querrySnapshot => {
           querrySnapshot.forEach(doc => {
             this.events.push(doc.data());
-            this.events[this.events.length - 1].id=doc.id
           });
         });
     }
