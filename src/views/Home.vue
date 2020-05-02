@@ -20,7 +20,10 @@ export default {
 
 <style>
 #home-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+ display: block;
   position: relative;
-  min-height: 100vh;
+  padding-bottom: 100px;
 }
 </style>

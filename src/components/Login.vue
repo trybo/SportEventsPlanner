@@ -1,19 +1,19 @@
 <template>
-  <div id="home-container" class="overflow-hidden">
+  <div id="login-container" class="overflow-hidden">
     <Navbar />
     <div>
-      <div class="container d-flex vh-100 text-white justify-content-center align-items-center">
-        <div class="col-sm-6 col-12 text-center">
-          <div class="card" id="login">
+      <div class="container d-flex justify-content-center align-items-center">
+        
+          <div class="card text-center mt-3" id="login">
             <div class="card-body">
               <div class="h3 text-center">Sign in</div>
               <br />
               <div v-if="error" class="alert alert-danger">{{error}}</div>
               <div class="d-flex flex-column align-items-center">
-                <button class="btn bg-primary text-white mb-3" @click="facebookLogin">
+                <button class="btn bg-primary text-white mb-3" id="btn-fb" @click="facebookLogin">
                   Sign in with Facebook
                 </button>
-                <button class="btn bg-danger text-white mb-3" @click="googleLogin">
+                <button class="btn bg-danger text-white mb-3" id="btn-google" @click="googleLogin">
                   Sign in with Google
                 </button>
               </div>
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-    </div>
+    
     <Footer />
   </div>
 </template>
@@ -121,12 +121,18 @@ import Footer from "@/components/Footer";
 </script>
 
 <style>
-#home-container {
+#login-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+ display: block;
   position: relative;
-  min-height: 100vh;
+  padding-bottom: 100px;
 }
 .btn {
   background-color: #003c8f !important;
   color: white !important;
+}
+#btn-fb, #btn-google{
+  width: 200px !important;
 }
 </style>

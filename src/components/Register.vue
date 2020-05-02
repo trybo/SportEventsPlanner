@@ -1,12 +1,13 @@
 <template>
-  <div id="home-container" class="overflow-hidden">
+  <div id="reg-container" class="overflow-hidden">
     <Navbar />
     <div>
-      <div class="container d-flex vh-100 text-white justify-content-center align-items-center">
-        <div class="col-md-4 col-sm-6 col-12 text-center">
-          <div class="card" id="reg">
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="card-deck text-center mt-3">
+          <div class="card">
             <div class="card-body">
               <div class="h3 text-center">Sign up</div>
+              <br />
               <div v-if="error" class="alert alert-danger">{{error}}</div>
 
               <form action="#" @submit.prevent="submit">
@@ -77,12 +78,12 @@
                   <button type="submit" class="btn">Sign up</button>
                 </div>
               </form>
-              <p>
+              <card-text>
                 If you have an account yet, please
                 <router-link to="/login">
-                  <span><b>Sign in</b></span>.
+                  <b>Sign in</b>.
                 </router-link>
-              </p>
+              </card-text>
             </div>
           </div>
         </div>
@@ -94,6 +95,8 @@
 
 
 <script>
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import firebase from "firebase";
 import { router } from "../main";
 
@@ -145,13 +148,14 @@ export default {
     }
   }
 };
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 </script>
 <style>
-#home-container {
+#reg-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+ display: block;
   position: relative;
-  min-height: 100vh;
+  padding-bottom: 100px;
 }
 .btn {
   background-color: #003c8f !important;
