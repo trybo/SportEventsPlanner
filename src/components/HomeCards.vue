@@ -1,5 +1,6 @@
 <template>
-  <div class="card-deck text-center mx-4 my-5">
+<div class="container d-flex vh-100 justify-content-center align-items-center">
+  <div class="card-deck text-center m-auto mb-5">
     <div class="card bg-transparent text-white p-2">
       <img class="card-img-top" src="../assets/logo.png" alt="Card image cap" />
       <div class="card-body">
@@ -28,6 +29,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -35,6 +37,9 @@
 
 <style>
 .card{
-    border: none;
+    border: none !important;
+}
+.card-body{
+  background-color: #1565c0 !important;
 }
 </style>
