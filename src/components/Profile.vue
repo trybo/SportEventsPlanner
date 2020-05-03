@@ -145,24 +145,42 @@ export default {
       }
     },
     onFileSelected(e) {
-    var user = firebase.auth().currentUser;
-    this.uid = user.uid;
+            var self=this;
+       firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+   
+    self.uid = user.uid;
      let file = e.target.files[0];
-     var storageRef = firebase.storage().ref('/profilepicture/'+ this.uid);
+     var storageRef = firebase.storage().ref('/profilepicture/'+ self.uid);
      storageRef.put(file);
+      
+         
+        } 
+      })
+     router.go()
     },
     fileLoad(){
-      var user = firebase.auth().currentUser;
-      this.uid = user.uid;
+      var self=this;
+       firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+                self.uid = user.uid;
       
       var storageReference = firebase.storage();
-      storageReference.ref('profilepicture/' + this.uid).getDownloadURL().then(function(url) {
+      storageReference.ref('profilepicture/' + self.uid).getDownloadURL().then(function(url) {
         document.getElementById("avatar").src = url;
         
       })
+         
+        } 
+      })
+      
     },
     showPhoto() {
+     
       this.fileLoad();
+      
     }
   
   },
@@ -173,8 +191,9 @@ export default {
           router.push("/");
         } 
       })
+      this.getData();
     this.showPhoto();
-    this.getData();
+    
   }
 };
 </script>

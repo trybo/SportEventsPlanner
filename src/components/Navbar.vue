@@ -69,7 +69,17 @@ methods:{
 	}
 ,
 beforeMount(){
-this.checkuser()}
+  var self=this;
+     firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+          self.user=user;
+        }
+        else{
+          self.user=null;
+        }
+      })
+}
 }
 </script>
 
