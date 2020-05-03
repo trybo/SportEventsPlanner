@@ -3,18 +3,18 @@
   <div id="create-container" class="overflow-hidden">
    <Navbar />
    <h1 class="text-center my-4">Create Event</h1>
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card" id="reg" style="width:800px; margin:0 auto;">
-          <div class="card-body">
+    <div class="row p-3 mb-2">
+    
+        
+          <div class="card-body col-md-8 px-5" style='margin:auto; width:800px'>
             <div style="color:red" v-if="error" class="alert alert-danger">{{error}}</div>
             <form action="#" @submit.prevent="submit">
 
 
               <div class="form-group row">
-                <label for="date" class="col-md-4 col-form-label text-md-right">Date</label>
+                <label for="date" class="col-md-4 px-2 col-form-label text-md-right">Date</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                   <input
                     id="date"
                     type="date"
@@ -29,9 +29,9 @@
               </div>
 
               <div class="form-group row">
-                <label for="date" class="col-md-4 col-form-label text-md-right">Hour</label>
+                <label for="date" class="col-md-4 px-2 col-form-label text-md-right">Hour</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                   <input
                     id="hour"
                     type="time"
@@ -46,9 +46,9 @@
               </div>
 
               <div class="form-group row">
-                <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
+                <label for="type" class="col-md-4 px-2 col-form-label text-md-right">Type</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                   <input
                     id="type"
                     type="text"
@@ -60,9 +60,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="type" class="col-md-4 col-form-label text-md-right">Level</label>
+                <label for="type" class="col-md-4 px-2 col-form-label text-md-right">Level</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                   <select id='level' v-model="form.level" class="form-control">
                     <option value="Low">Low</option>
                      <option value="Medium">Medium</option>
@@ -71,9 +71,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="slots" class="col-md-4 col-form-label text-md-right">Slots</label>
+                <label for="slots" class="col-md-4 px-2 col-form-label text-md-right">Slots</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                   <input
                     id="slots"
                     type="number"
@@ -85,9 +85,9 @@
                 </div>
               </div>
                 <div class="form-group row">
-                 <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
+                 <label for="location" class="col-md-4 px-2 col-form-label text-md-right">Location</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 px-3">
                         
                   
                     
@@ -122,9 +122,9 @@
               </div>
             </form>
           </div>
-        </div>
         
-      </div>
+        
+      
     </div>
     <div><Footer></Footer></div>
   </div>
