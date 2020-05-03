@@ -119,6 +119,10 @@ export default {
   },
   methods: {
     submit() {
+      var today=new Date;
+      var bday=new Date(document.getElementById('age').value)
+
+      if(bday <today){
       if (this.form.password == this.form.password2) {
         firebase
           .auth()
@@ -145,7 +149,20 @@ export default {
       } else {
         this.error = "Passwords must be the same";
       }
+      }
+      else{
+        this.error="Date can not be from future"
+      }
     }
+  },
+  beforeMount(){
+          firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+          router.push("/");
+        } 
+ 
+      });
   }
 };
 </script>

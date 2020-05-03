@@ -128,7 +128,16 @@ export default {
         console.log(error.message);
       }
     }
-  }
+  },
+  beforeMount() {
+          firebase.auth().onAuthStateChanged(function(user) {
+          
+        if (user) {
+          router.push("/profile");
+        } 
+      });
+    
+  },
 };
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

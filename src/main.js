@@ -26,10 +26,11 @@ Vue.use(VueGoogleMaps, {
     libraries: "places" // necessary for places input
   }
 });
-
+var ApiKey1='33861278706f4532ac1095323e61243a';
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
 export{router};
+export{ApiKey1}
