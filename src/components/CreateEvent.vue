@@ -176,6 +176,13 @@ export default {
   },
   methods: {
     submit() {
+          var today=new Date;
+          today.setHours(0,0,0,0)
+          var eventDate=new Date(document.getElementById('date').value)
+          if(eventDate<today){
+            this.error='Date must be future'
+          }
+          else{
           if (this.form.location=='') {
             this.error='You need to select location';
           }
@@ -208,6 +215,9 @@ export default {
         });
     
     
+    }
+    
+      
     }}, setPlace(place) {
       this.currentPlace = place;
     },
