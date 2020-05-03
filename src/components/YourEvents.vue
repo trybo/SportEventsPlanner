@@ -2,8 +2,9 @@
   <div id="home-container" class="overflow-hidden">
     <Navbar />
     <h1 class="text-center my-4">Your Events</h1>
-    <div class="row p-3 mb-2">
-      <div class="col-md-12">
+
+      <div class="col-lg-12">
+      <div class="table-responsive"> 
         <table class="table table-striped text-white">
         <thead>
         <th>No</th>
